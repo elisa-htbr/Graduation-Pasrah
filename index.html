@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>Undangan Wisuda</title>
+    <!-- Font Google + Ikon -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #faf7f2;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 24px 16px;
+            line-height: 1.5;
+            color: #2c2b28;
+        }
+
+        /* Kartu utama */
+        .card {
+            max-width: 420px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 48px 48px 32px 32px;
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15), 0 8px 20px -8px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.002);
+        }
+
+        /* Bagian header dengan ilustrasi */
+        .header-illustration {
+            background: linear-gradient(145deg, #f3efe8 0%, #e8e1d6 100%);
+            padding: 32px 24px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .badge-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffffd9;
+            backdrop-filter: blur(4px);
+            padding: 10px 18px 10px 14px;
+            border-radius: 60px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            color: #4a3f34;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+            border: 1px solid #f0ebe4;
+            margin-bottom: 20px;
+        }
+
+        .badge-icon i {
+            color: #b68b6b;
+            margin-right: 8px;
+            font-size: 1rem;
+        }
+
+        .header-illustration h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 2.6rem;
+            letter-spacing: -0.5px;
+            color: #2b241e;
+            line-height: 1.1;
+            margin-top: 8px;
+            margin-bottom: 6px;
+        }
+
+        .header-illustration h1 i {
+            color: #b68b6b;
+            font-size: 2rem;
+            margin: 0 6px;
+        }
+
+        .header-illustration .subhead {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #5f5548;
+            background: #ece6de;
+            display: inline-block;
+            padding: 6px 22px;
+            border-radius: 40px;
+            letter-spacing: 0.6px;
+            margin-top: 4px;
+            backdrop-filter: blur(2px);
+        }
+
+        /* ornamen garis */
+        .ornament-line {
+            width: 60px;
+            height: 2px;
+            background: #d6cbbc;
+            margin: 18px auto 10px;
+            border-radius: 10px;
+        }
+
+        /* body undangan */
+        .invitation-body {
+            padding: 28px 24px 20px;
+        }
+
+        .greeting {
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: #4d443b;
+            letter-spacing: 0.3px;
+            margin-bottom: 14px;
+        }
+
+        .greeting strong {
+            font-weight: 600;
+            color: #2b241e;
+        }
+
+        .event-detail {
+            background: #f8f5f0;
+            padding: 20px 18px;
+            border-radius: 28px;
+            margin: 16px 0 22px;
+            border: 1px solid #efebe4;
+        }
+
+        .event-detail .row {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .event-detail .row:last-child {
+            margin-bottom: 0;
+        }
+
+        .event-detail .icon-box {
+            width: 36px;
+            height: 36px;
+            background: #ffffff;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b68b6b;
+            font-size: 1rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            border: 1px solid #e7dfd6;
+            flex-shrink: 0;
+        }
+
+        .event-detail .content {
+            flex: 1;
+        }
+
+        .event-detail .label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #8a7b6b;
+            font-weight: 600;
+        }
+
+        .event-detail .value {
+            font-weight: 500;
+            font-size: 1rem;
+            color: #2b241e;
+            margin-top: 2px;
+        }
+
+        .event-detail .value i {
+            color: #b68b6b;
+            margin-right: 6px;
+        }
+
+        .divider-light {
+            height: 1px;
+            background: #e3dad0;
+            margin: 18px 0 16px;
+            opacity: 0.5;
+        }
+
+        .rsvp-section {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 12px;
+            margin: 24px 0 12px;
+        }
+
+        .btn-primary {
+            background: #2b241e;
+            border: none;
+            padding: 16px 18px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #fcf8f3;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.04);
+            border: 1px solid #3d332b;
+            letter-spacing: 0.3px;
+            text-decoration: none;
+        }
+
+        .btn-primary i {
+            font-size: 1.1rem;
+            color: #dccfc1;
+        }
+
+        .btn-primary:hover {
+            background: #3d332b;
+            border-color: #5a4b3e;
+            transform: scale(1.01);
+            box-shadow: 0 10px 18px -6px rgba(0,0,0,0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #d6cbbc;
+            padding: 14px 18px;
+            border-radius: 60px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: #3d332b;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-outline i {
+            color: #b68b6b;
+        }
+
+        .btn-outline:hover {
+            background: #f3efe8;
+            border-color: #b9a690;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 0.8rem;
+            color: #8f8375;
+            letter-spacing: 0.2px;
+            border-top: 1px dashed #e5ddd3;
+            padding-top: 20px;
+        }
+
+        .footer-note i {
+            color: #b68b6b;
+            margin: 0 4px;
+        }
+
+        .footer-note .highlight {
+            font-weight: 500;
+            color: #4d443b;
+        }
+
+        /* Responsive kecil */
+        @media (max-width: 440px) {
+            .card {
+                border-radius: 32px 32px 24px 24px;
+            }
+            .header-illustration h1 {
+                font-size: 2.2rem;
+            }
+            .event-detail {
+                padding: 16px 14px;
+            }
+            .invitation-body {
+                padding: 20px 16px;
+            }
+        }
+
+        /* efek hover pada tombol */
+        .btn-primary, .btn-outline {
+            transition: all 0.15s ease;
+        }
+
+        /* tambahan sentuhan */
+        .attendance-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: #f0ebe4;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            color: #4a3f34;
+            width: fit-content;
+            margin: 6px auto 0;
+            border: 1px solid #e7dfd6;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+
+    <!-- Header dengan ilustrasi dan gelar -->
+    <div class="header-illustration">
+        <div class="badge-icon">
+            <i class="fas fa-graduation-cap"></i> 
+            <span>Wisuda 2026</span>
+        </div>
+
+        <h1>
+            <i class="fas fa-quote-left" style="font-size:1.4rem; opacity:0.6;"></i>
+            S.Sos.
+            <i class="fas fa-quote-right" style="font-size:1.4rem; opacity:0.6;"></i>
+        </h1>
+        <div class="subhead">Sarjana Sosial</div>
+        <div class="ornament-line"></div>
+        <div style="font-size: 0.8rem; margin-top: 8px; color: #6f6254; letter-spacing: 0.4px;">
+            <i class="fas fa-calendar-alt" style="margin-right: 6px;"></i>  Sabtu, 27 Juni 2026
+        </div>
+    </div>
+
+    <!-- Isi undangan -->
+    <div class="invitation-body">
+
+        <div class="greeting">
+            <strong>Bismillah,</strong> dengan rasa syukur dan bahagia, 
+            kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri 
+            acara wisuda putra/putri kami:
+        </div>
+
+        <!-- Nama lengkap wisudawan -->
+        <div style="text-align: center; margin: 10px 0 4px;">
+            <span style="font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 600; color: #1f1b17; letter-spacing: -0.3px;">
+                Aditya Pratama
+            </span>
+            <div style="font-size: 0.85rem; color: #6f6254; margin-top: 2px; font-weight: 400;">
+                <i class="fas fa-star" style="color: #b68b6b; font-size: 0.6rem;"></i> 
+                Cum Laude 
+                <i class="fas fa-star" style="color: #b68b6b; font-size: 0.6rem;"></i>
+            </div>
+        </div>
+
+        <!-- Detail acara -->
+        <div class="event-detail">
+            <div class="row">
+                <div class="icon-box"><i class="fas fa-calendar-check"></i></div>
+                <div class="content">
+                    <div class="label">Hari & Tanggal</div>
+                    <div class="value"><i class="far fa-calendar-alt" style="margin-right: 4px;"></i> Sabtu, 27 Juni 2026</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="icon-box"><i class="fas fa-clock"></i></div>
+                <div class="content">
+                    <div class="label">Waktu</div>
+                    <div class="value"><i class="far fa-clock"></i> 08.30 – 12.00 WIB</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="icon-box"><i class="fas fa-map-pin"></i></div>
+                <div class="content">
+                    <div class="label">Tempat</div>
+                    <div class="value"><i class="fas fa-location-dot"></i> Aula Utama Kampus B</div>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom:0;">
+                <div class="icon-box"><i class="fas fa-users"></i></div>
+                <div class="content">
+                    <div class="label">Acara</div>
+                    <div class="value"><i class="fas fa-graduation-cap"></i> Prosesi Wisuda &amp; Syukuran</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pesan tambahan -->
+        <div style="background: #fcf9f6; padding: 12px 16px; border-radius: 40px; font-size: 0.9rem; color: #4d443b; border: 1px solid #f0ebe4; text-align: center; margin: 6px 0 12px;">
+            <i class="fas fa-heart" style="color: #b68b6b; margin-right: 6px;"></i> 
+            Kehadiran dan doa restu Anda adalah kebahagiaan bagi kami.
+        </div>
+
+        <!-- Tombol aksi RSVP dan lokasi -->
+        <div class="rsvp-section">
+            <a href="#" class="btn-primary" onclick="alert('Terima kasih! Konfirmasi kehadiran Anda telah tercatat. 🙏'); return false;">
+                <i class="fas fa-check-circle"></i> Konfirmasi Kehadiran
+            </a>
+            <a href="#" class="btn-outline" onclick="alert('📍 Lokasi: Aula Utama Kampus B, Jl. Pendidikan No.45, Kota. (link maps menyusul)'); return false;">
+                <i class="fas fa-map-location-dot"></i> Lihat Lokasi
+            </a>
+        </div>
+
+        <!-- Catatan kecil + doa -->
+        <div class="footer-note">
+            <i class="fas fa-phone-alt" style="margin-right: 4px;"></i> 
+            <span class="highlight">+62 812 3456 7890</span> (panitia) 
+            <span style="margin: 0 6px;">•</span> 
+            <i class="fas fa-envelope"></i> wisuda@keluarga.com
+            <div style="margin-top: 8px; font-size: 0.75rem; opacity: 0.7;">
+                <i class="fas fa-hands-praying"></i> 
+                Mohon maaf jika ada kekurangan, semoga Allah meridhoi langkah kita.
+            </div>
+            <div class="attendance-badge">
+                <i class="fas fa-user-check"></i> RSVP terbuka sampai 20 Juni
+            </div>
+        </div>
+
+    </div>
+    <!-- akhir invitation-body -->
+</div>
+<!-- akhir card -->
+
+</body>
+</html>
